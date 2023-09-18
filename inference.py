@@ -8,8 +8,8 @@ import uvicorn
 
 
 class LlmModel(object):
-    def __init__(self):
-        self.tokenizer, self.model = self.get_tokenizer_model("../DB-GPT/models/sqlcoder")
+    def __init__(self, model_name_or_path):
+        self.tokenizer, self.model = self.get_tokenizer_model(model_name_or_path)
         self.prompt_file = self.read_file('prompt.md')
         self.metadata_file = self.read_file('metadata.sql')
         self.eos_token_id = self.tokenizer.convert_tokens_to_ids(["```"])[0]
@@ -101,12 +101,10 @@ def sever(SqlCoder, host, port):
 
 
 if __name__ == "__main__":
-    SqlCoder = LlmModel()
-    # test_qa()
     parser = argparse.ArgumentParser()
+    parser.add_argument('--model_name_or_path', '-model_path', help='model name or path')
     parser.add_argument('--host', '-H', help='host to listen', default='127.0.0.1')
     parser.add_argument('--port', '-P', help='port of this service', default=6006)
     args = parser.parse_args()
+    SqlCoder = LlmModel(args.model_name_or_path)
     sever(SqlCoder, args.host, args.port)
-    # question = '今天是2023年9月11日，前两年发生在杨浦的性侵案件的嫌疑人有多少个，请返回相关信息，要求被害人是14周岁以下的未成年人'
-    # print("Loading a model and generating a SQL query for answering your question...")
