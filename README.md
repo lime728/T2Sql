@@ -9,7 +9,7 @@ pip install -r requirements.txt
 
 ### Set-up Sever
 ```bash
-python set_up.py --model_path <your_model_path>
+python set_up.py --model_name_or_path <your_model_path> --host <your_host> --port <your_port>
 ```
 The sever will be set-up at `http://127.0.0.1:6006/sqlcoder/`
 
