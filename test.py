@@ -1,5 +1,6 @@
 import requests
 import json
+import argparse
 
 
 header = {
@@ -10,5 +11,11 @@ data = {
     "question": "今天是2023年9月11日，前两年发生在杨浦的性侵案件有多少个",
 }
 
-r = requests.post(url='http://127.0.0.1:6006/sqlcoder', headers=header, data=json.dumps(data))
-print(r.text)
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--host', '-H', help='host to listen', default='127.0.0.1')
+    parser.add_argument('--port', '-P', help='port of this service', default=6006)
+    args = parser.parse_args()
+    url = 'http://' + str(args.host) + ':' + str(args.port) + '/sqlcoder'
+    r = requests.post(url='http://127.0.0.1:6006/sqlcoder', headers=header, data=json.dumps(data))
+    print(r.text)
