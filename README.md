@@ -16,7 +16,7 @@ The sever will be set-up at `http://127.0.0.1:6006/sqlcoder/`
 ### Test
 You can test the sever by running [test.py](./test.py).
 ```bash
-python test.py
+python test.py --host <your_host[optional]> --port <your_port[optional]>
 ```
 
 ## Tips
