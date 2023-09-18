@@ -11,9 +11,16 @@ pip install -r requirements.txt
 ```bash
 python set_up.py --model_path <your_model_path>
 ```
+The sever will be set-up at `http://127.0.0.1:6006/sqlcoder/
+
+### Test
+You can test the sever by running [test.py](./test.py).
+```bash
+python test.py
+```
 
 ## Tips
-we recommend using `sqlcoder` as LLM to transfer Text to Sql language.
+We recommend using `sqlcoder` as LLM to transfer Text to Sql language.
 
 ## Reference
 All work is based on the original [sqlcoder](https://github.com/defog-ai/sqlcoder).
