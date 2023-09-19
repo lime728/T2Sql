@@ -1,0 +1,1962 @@
+[
+ {
+  "instruction": "请找出案件类型为性侵案件，发生在2020年的所有案件的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJLX = '性侵案件' AND YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "请找出案件类型为偷盗案件的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '偷盗案件';"
+ },
+ {
+  "instruction": "请找出发生在公园的所有案件的案件编号，案件地点和案件时间。",
+  "output": "SELECT AJBH, AJDD, AJSJ FROM CASES WHERE AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "请找出嫌疑人年龄小于20岁且性别为女性的所有案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE XYRNL < 20 AND XYRXB = '女';"
+ },
+ {
+  "instruction": "请找出发生在静安区并且案件类型为抢劫案件的所有案件的案件描述和被害人姓名。",
+  "output": "SELECT AJMS, BHRXM FROM CASES WHERE AJDD_Q = '静安区' AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "请找出案件发生地点为黄浦区且嫌疑人身高最高的案件的案件名称和嫌疑人姓名。",
+  "output": "SELECT AJMC, XYRXM FROM CASES WHERE AJDD_Q = '黄浦区' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "请找出嫌疑人体重大于80kg且被害人年龄小于18岁的所有案件的案件编号和被害人身高。",
+  "output": "SELECT AJBH, BHRSG FROM CASES WHERE XYRTZ > 80 AND BHRNL < 18;"
+ },
+ {
+  "instruction": "请找出发生在上海市的所有案件的案件编号和嫌疑人外貌。",
+  "output": "SELECT AJBH, XYRWM FROM CASES WHERE AJDD_S = '上海市';"
+ },
+ {
+  "instruction": "请找出案件类型为性侵案件且嫌疑人性别为男性的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND XYRXB = '男';"
+ },
+ {
+  "instruction": "请找出案件发生时间距离当前时间不超过一周的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE TIMESTAMPDIFF(DAY, AJSJ, NOW()) <= 7;"
+ },
+ {
+  "instruction": "查询发生在公园的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件，嫌疑人身高在170cm以上的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='偷盗案件' AND XYRSG>170;"
+ },
+ {
+  "instruction": "查询发生在2019年的抢劫案件中，被害人年龄在20岁以下的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJSJ BETWEEN '2019-01-01' AND '2019-12-31' AND BHRNL<20;"
+ },
+ {
+  "instruction": "查询案件发生在浦东新区并且嫌疑人身高最高的案件的受害人年龄。",
+  "output": "SELECT BHRNL FROM CASES WHERE AJDD_Q='浦东新区' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件名称中包含“抢劫”的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMC LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询案件发生地点为黄浦区的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='黄浦区';"
+ },
+ {
+  "instruction": "查询发生在2020年的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJSJ BETWEEN '2020-01-01' AND '2020-12-31';"
+ },
+ {
+  "instruction": "查询嫌疑人身份证号为'1234567890'的案件的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE XYRSFZH='1234567890';"
+ },
+ {
+  "instruction": "查询案件发生在2021年的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND AJSJ BETWEEN '2021-01-01' AND '2021-12-31';"
+ },
+ {
+  "instruction": "查询案件地点为上海市浦东新区且被害人身高最高的案件的嫌疑人姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_S='上海市' AND AJDD_Q='浦东新区' ORDER BY BHRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件的案件编号、案件名称和案件描述",
+  "output": "SELECT AJBH, AJMC, AJMS FROM CASES WHERE AJDD LIKE '%公园%' AND AJLX = '性侵案件' AND AJSJ BETWEEN '2020-01-01' AND '2020-12-31';"
+ },
+ {
+  "instruction": "查询发生在上海市徐汇区的抢劫案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJDD_S = '上海市' AND AJDD_Q = '徐汇区' AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询嫌疑人姓名为张三的案件名称和案件地点",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE XYRXM = '张三';"
+ },
+ {
+  "instruction": "查询案件发生时间为2021年1月1日之后的偷盗案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '偷盗案件' AND AJSJ >= '2021-01-01';"
+ },
+ {
+  "instruction": "查询受害人是14周岁以下女性且嫌疑人身高最高的性侵案件的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE BHRSFZH LIKE '__[0123456]__**********' AND XYRXB = '男' AND AJLX = '性侵案件' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件地点为黄浦区和徐汇区的抢劫案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJDD_Q IN ('黄浦区', '徐汇区') AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年2月1日至2021年1月31日期间的案件类型和嫌疑人姓名",
+  "output": "SELECT AJLX, XYRXM FROM CASES WHERE AJSJ BETWEEN '2020-02-01' AND '2021-01-31';"
+ },
+ {
+  "instruction": "查询案件地点为虹口区且嫌疑人性别为女的案件名称和案件描述",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE AJDD_Q = '虹口区' AND XYRXB = '女';"
+ },
+ {
+  "instruction": "查询案件发生地点是公园且案件名称包含“盗窃”的抢劫案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJDD LIKE '%公园%' AND AJMC LIKE '%盗窃%' AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询嫌疑人年龄大于20岁且案件地点为浦东新区的性侵案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE XYRNL > 20 AND AJDD_Q = '浦东新区' AND AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "查询2019年发生在浦东新区的抢劫案件中，受害人性别为女性的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '浦东新区' AND AJLX = '抢劫案件' AND BHRXB = '女'"
+ },
+ {
+  "instruction": "查询发生在上海市黄浦区的案件中，最早的案件发生时间。",
+  "output": "SELECT MIN(AJSJ) FROM CASES WHERE AJDD_S = '上海市' AND AJDD_Q = '黄浦区'"
+ },
+ {
+  "instruction": "查询案件名称为'偷盗案件'且嫌疑人身高大于180cm的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMC = '偷盗案件' AND XYRSG > 180"
+ },
+ {
+  "instruction": "查询案件地点为'静安区'的案件中，嫌疑人体重最小的嫌疑人姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_Q = '静安区' ORDER BY XYRTZ ASC LIMIT 1"
+ },
+ {
+  "instruction": "查询案件地点为'长宁区'且嫌疑人外貌为'留长发'的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '长宁区' AND XYRWM = '留长发'"
+ },
+ {
+  "instruction": "查询案件描述中包含'持刀'的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMS LIKE '%持刀%'"
+ },
+ {
+  "instruction": "查询案件时间在2020年的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE YEAR(AJSJ) = 2020"
+ },
+ {
+  "instruction": "查询案件地点为'徐汇区'的案件中，受害人最高的嫌疑人姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_Q = '徐汇区' ORDER BY BHRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询案件类型为'性侵案件'且嫌疑人身高大于160cm小于170cm的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND XYRSG > 160 AND XYRSG < 170"
+ },
+ {
+  "instruction": "查询案件地点为'浦东新区'的案件中，受害人最重的嫌疑人姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_Q = '浦东新区' ORDER BY BHRTZ DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询案件编号为20201001的案件名称是什么",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH = '20201001';"
+ },
+ {
+  "instruction": "查询2020年在上海市发生的抢劫案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_S = '上海市' AND AJSJ BETWEEN '2020-01-01' AND '2020-12-31';"
+ },
+ {
+  "instruction": "查询身高在170cm以上的所有嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE XYRSG > 170;"
+ },
+ {
+  "instruction": "查询被害人姓名为张三且案件地点在长宁区的所有案件信息",
+  "output": "SELECT * FROM CASES WHERE BHRXM = '张三' AND AJDD_Q = '长宁区';"
+ },
+ {
+  "instruction": "查询案件地点是公园且发生在2019年的所有性侵案件受害人的年龄",
+  "output": "SELECT BHRNL FROM CASES WHERE AJDD = '公园' AND AJLX = '性侵案件' AND AJSJ BETWEEN '2019-01-01' AND '2019-12-31';"
+ },
+ {
+  "instruction": "查询年龄最小的嫌疑人身高",
+  "output": "SELECT MIN(XYRSG) FROM CASES;"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查询所有案件的案件类型和案件地点",
+  "output": "SELECT AJLX, AJDD FROM CASES;"
+ },
+ {
+  "instruction": "查询所有年龄在20岁以下的案件嫌疑人姓名和性别",
+  "output": "SELECT XYRXM, XYRXB FROM CASES WHERE XYRNL < 20;"
+ },
+ {
+  "instruction": "查询案件地点是徐汇区且发生在2021年的所有案件信息的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJDD_Q = '徐汇区' AND AJSJ BETWEEN '2021-01-01' AND '2021-12-31';"
+ },
+ {
+  "instruction": "查询2019年发生在徐汇区的抢劫案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='徐汇区' AND YEAR(AJSJ) = 2019;"
+ },
+ {
+  "instruction": "查询所有发生在公园的性侵案件的案件描述和嫌疑人姓名。",
+  "output": "SELECT AJMS, XYRXM FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询年龄大于等于40岁的嫌疑人的姓名和身份证号。",
+  "output": "SELECT XYRXM, XYRSFZH FROM CASES WHERE XYRNL >= 40;"
+ },
+ {
+  "instruction": "查询身高在170cm以上的被害人的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE BHRSG > 170;"
+ },
+ {
+  "instruction": "查询身高最高的抢劫案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE AJLX='抢劫案件' ORDER BY BHRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询性侵案件中嫌疑人性别为女性、年龄不超过30岁的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX='性侵案件' AND XYRXB='女' AND XYRNL <= 30;"
+ },
+ {
+  "instruction": "查询被害人体重在50kg至70kg之间的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE BHRTZ BETWEEN 50 AND 70;"
+ },
+ {
+  "instruction": "查询案件地点在浦东新区或金山区，案件类型为偷盗案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX='偷盗案件' AND (AJDD_Q='浦东新区' OR AJDD_Q='金山区');"
+ },
+ {
+  "instruction": "查询案件描述中包含关键词“暴力”或“袭击”的案件编号和嫌疑人姓名。",
+  "output": "SELECT AJBH, XYRXM FROM CASES WHERE AJMS LIKE '%暴力%' OR AJMS LIKE '%袭击%';"
+ },
+ {
+  "instruction": "查询案件时间在2020年6月之后的性侵案件中最年轻的被害人的姓名和年龄。",
+  "output": "SELECT BHRXM, BHRNL FROM CASES WHERE AJLX='性侵案件' AND AJSJ >= '2020-06-01' ORDER BY BHRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在公园的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询案件名称为“抢劫案件”的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='抢劫案件' AND AJMC='抢劫案件';"
+ },
+ {
+  "instruction": "查询2020年案件发生的城市和区县。",
+  "output": "SELECT DISTINCT AJDD_S, AJDD_Q FROM CASES WHERE YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询嫌疑人年龄在20岁以下的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE XYRNL < 20;"
+ },
+ {
+  "instruction": "查询被害人性别为女性，并且身高超过170cm的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE BHRXB='女' AND BHRSG > 170;"
+ },
+ {
+  "instruction": "查询案件地点为黄浦区或徐汇区的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND (AJDD_Q='黄浦区' OR AJDD_Q='徐汇区');"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年12月的抢劫案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND MONTH(AJSJ)=12 AND YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "查询嫌疑人年龄在25岁到30岁之间，身高在180cm以上的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND XYRNL BETWEEN 25 AND 30 AND XYRSG > 180;"
+ },
+ {
+  "instruction": "查询被害人姓名为“张三”并且案件描述中包含“抢劫”的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE BHRSFZH='张三' AND AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询案件发生地点不在浦东新区和青浦区的偷盗案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='偷盗案件' AND AJDD_Q NOT IN ('浦东新区', '青浦区');"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX='性侵案件'"
+ },
+ {
+  "instruction": "查询发生在上海市的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_S='上海市'"
+ },
+ {
+  "instruction": "查询案件发生在2020年的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE YEAR(AJSJ)=2020"
+ },
+ {
+  "instruction": "查询案件地点在普陀区的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='普陀区'"
+ },
+ {
+  "instruction": "查询案件地点为浦东新区，嫌疑人为女性的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJDD_Q='浦东新区' AND XYRXB='女'"
+ },
+ {
+  "instruction": "查询案件地点为黄浦区，被害人年龄小于等于18岁的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='黄浦区' AND BHRNL<=18"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件的嫌疑人身高最高的姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='偷盗案件' ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询案件描述包含'公园'关键词的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMS LIKE '%公园%'"
+ },
+ {
+  "instruction": "查询案件发生的时间在2020年1月1日至2020年12月31日期间的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJSJ BETWEEN '2020-01-01 00:00:00' AND '2020-12-31 23:59:59'"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人的姓名",
+  "output": "SELECT XYRXM FROM CASES ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询案件编号为202001的案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE AJBH = '202001';"
+ },
+ {
+  "instruction": "查询所有性侵案件中的案件编号、案件名称和案件地点。",
+  "output": "SELECT AJBH, AJMC, AJDD FROM CASES WHERE AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "查询发生在2020年的所有抢劫案件的嫌疑人姓名和被害人姓名。",
+  "output": "SELECT XYRXM, BHRXM FROM CASES WHERE AJSJ BETWEEN '2020-01-01' AND '2020-12-31' AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询在黄浦区发生的所有偷盗案件的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJDD_Q = '黄浦区' AND AJLX = '偷盗案件';"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人的姓名和身高。",
+  "output": "SELECT XYRXM, XYRSG FROM CASES ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询年龄小于14岁的女性受害人的案件编号和案件时间。",
+  "output": "SELECT AJBH, AJSJ FROM CASES WHERE BHRNL < 14 AND BHRXB = '女';"
+ },
+ {
+  "instruction": "查询被害人和嫌疑人的性别、年龄、身高和体重。",
+  "output": "SELECT BHRXB, BHRNL, BHRSG, BHRTZ, XYRXB, XYRNL, XYRSG, XYRTZ FROM CASES;"
+ },
+ {
+  "instruction": "查询所有案件的案件编号和案件类型。",
+  "output": "SELECT AJBH, AJLX FROM CASES;"
+ },
+ {
+  "instruction": "查询案件地点为公园的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询身高超过180cm且体重超过70kg的嫌疑人和被害人的姓名、身高和体重。",
+  "output": "SELECT XYRXM, XYRSG XYRTZ, BHRXM, BHRSG, BHRTZ FROM CASES WHERE XYRSG > 180 AND XYRTZ > 70 OR BHRSG > 180 AND BHRTZ > 70;"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "查询发生在上海市的偷盗案件的详细地点和案件描述。",
+  "output": "SELECT AJDD, AJMS FROM CASES WHERE AJDD_S = '上海市' AND AJLX = '偷盗案件';"
+ },
+ {
+  "instruction": "查询发生在2020年的所有抢劫案件的嫌疑人姓名和被害人姓名。",
+  "output": "SELECT XYRXM, BHRXM FROM CASES WHERE YEAR(AJSJ) = 2020 AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询发生在浦东新区的所有案件的案件描述和案件时间。",
+  "output": "SELECT AJMS, AJSJ FROM CASES WHERE AJDD_Q = '浦东新区';"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的性侵案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX = '性侵案件' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询被害人年龄小于18岁的所有性侵案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '性侵案件' AND BHRNL < 18;"
+ },
+ {
+  "instruction": "查询发生在黄浦区且嫌疑人性别为男的所有案件的案件地点和案件时间。",
+  "output": "SELECT AJDD, AJSJ FROM CASES WHERE AJDD_Q = '黄浦区' AND XYRXB = '男';"
+ },
+ {
+  "instruction": "查询发生在公园的所有偷盗案件的被害人姓名和被害人身高。",
+  "output": "SELECT BHRXM, BHRSG FROM CASES WHERE AJDD LIKE '%公园%' AND AJLX = '偷盗案件';"
+ },
+ {
+  "instruction": "查询被害人姓名为张三的所有案件的案件类型和案件地点。",
+  "output": "SELECT AJLX, AJDD FROM CASES WHERE BHRXM = '张三';"
+ },
+ {
+  "instruction": "查询发生在2021年的所有案件的案件编号和嫌疑人年龄。",
+  "output": "SELECT AJBH, XYRNL FROM CASES WHERE YEAR(AJSJ) = 2021;"
+ },
+ {
+  "instruction": "请提供在2020年发生的性侵案件名单。",
+  "output": "SELECT AJMC FROM CASES WHERE AJLX='性侵案件' AND YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "请提供发生在上海市的所有案件的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJDD_S='上海市';"
+ },
+ {
+  "instruction": "请提供在普陀区发生的偷盗案件中被害人的姓名。",
+  "output": "SELECT BHRXM FROM CASES WHERE AJLX='偷盗案件' AND AJDD_Q='普陀区';"
+ },
+ {
+  "instruction": "请提供案件地点为虹口区并且案件类型为抢劫案件的所有案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='虹口区';"
+ },
+ {
+  "instruction": "请提供发生在长宁区的性侵案件中嫌疑人的姓名和年龄。",
+  "output": "SELECT XYRXM, XYRNL FROM CASES WHERE AJLX='性侵案件' AND AJDD_Q='长宁区';"
+ },
+ {
+  "instruction": "请提供发生在2020年并且案件描述中包含关键词'抢劫'的所有案件的案件地点。",
+  "output": "SELECT AJDD FROM CASES WHERE AJMS LIKE '%抢劫%' AND YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "请提供身高超过180cm的嫌疑人的姓名和年龄。",
+  "output": "SELECT XYRXM, XYRNL FROM CASES WHERE XYRSG>180;"
+ },
+ {
+  "instruction": "请提供年龄在30岁到40岁之间的被害人的所有案件的案件名称和案件时间。",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE BHRNL BETWEEN 30 AND 40;"
+ },
+ {
+  "instruction": "请提供所有案件中嫌疑人身份证号以330621开头的案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE XYRSFZH LIKE '330621%';"
+ },
+ {
+  "instruction": "请提供案件地点为黄浦区并且案件发生时间在2020年1月1日到2020年6月30日之间的所有案件的案件名称和案件地点。",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE AJDD_Q='黄浦区' AND AJSJ BETWEEN '2020-01-01' AND '2020-06-30';"
+ },
+ {
+  "instruction": "查找2020年发生在公园的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' AND AJSJ BETWEEN '2020-01-01' AND '2020-12-31';"
+ },
+ {
+  "instruction": "查找发生在上海市的所有案件。",
+  "output": "SELECT * FROM CASES WHERE AJDD_S='上海市';"
+ },
+ {
+  "instruction": "查找发生在徐汇区的偷盗案件中，被害人是女性的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX='偷盗案件' AND AJDD_Q='徐汇区' AND BHRXB='女';"
+ },
+ {
+  "instruction": "查找发生在长宁区的抢劫案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='长宁区';"
+ },
+ {
+  "instruction": "查找发生在黄浦区的案件中，嫌疑人岁数最小的是多少岁。",
+  "output": "SELECT MIN(XYRNL) FROM CASES WHERE AJDD_Q='黄浦区';"
+ },
+ {
+  "instruction": "查找案件时间在2019年的所有案件中，嫌疑人身高最高的是谁。",
+  "output": "SELECT XYRXM FROM CASES WHERE YEAR(AJSJ)=2019 ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查找案件地点在静安区的性侵案件中，被害人身高最矮的是多少厘米。",
+  "output": "SELECT MIN(BHRSG) FROM CASES WHERE AJLX='性侵案件' AND AJDD_Q='静安区';"
+ },
+ {
+  "instruction": "查找案件地点在虹口区的案件中，嫌疑人体重最重的是谁。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_Q='虹口区' ORDER BY XYRTZ DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查找案件地点在浦东新区的抢劫案件的平均年龄。",
+  "output": "SELECT AVG(BHRNL) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='浦东新区';"
+ },
+ {
+  "instruction": "查找案件地点在杨浦区的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='杨浦区';"
+ },
+ {
+  "instruction": "查询2019年发生在上海市的偷盗案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJSJ >= '2019-01-01 00:00:00' AND AJSJ <= '2019-12-31 23:59:59' AND AJLX = '偷盗案件' AND AJDD_S = '上海市';"
+ },
+ {
+  "instruction": "查询发生在浦东新区的所有性侵案件的案件描述、案件时间和嫌疑人姓名。",
+  "output": "SELECT AJMS, AJSJ, XYRXM FROM CASES WHERE AJLX = '性侵案件' AND AJDD_Q = '浦东新区';"
+ },
+ {
+  "instruction": "查询年龄在18岁以下的所有被害人的姓名、性别和案件地点。",
+  "output": "SELECT BHRXM, BHRXB, AJDD FROM CASES WHERE BHRNL < 18;"
+ },
+ {
+  "instruction": "查询身高在160cm以上的所有嫌疑人的姓名、案件名称和案件时间。",
+  "output": "SELECT XYRXM, AJMC, AJSJ FROM CASES WHERE XYRSG > 160;"
+ },
+ {
+  "instruction": "查询案件地点在静安区且嫌疑人身高最高的偷盗案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '偷盗案件' AND AJDD_Q = '静安区' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件发生在2020年的所有案件的案件名称、案件地点和被害人姓名。",
+  "output": "SELECT AJMC, AJDD, BHRXM FROM CASES WHERE AJSJ >= '2020-01-01 00:00:00' AND AJSJ <= '2020-12-31 23:59:59';"
+ },
+ {
+  "instruction": "查询案件发生在徐汇区且嫌疑人年龄在20岁至30岁之间的性侵案件的案件描述、案件地点和嫌疑人姓名。",
+  "output": "SELECT AJMS, AJDD, XYRXM FROM CASES WHERE AJLX = '性侵案件' AND AJDD_Q = '徐汇区' AND XYRNL BETWEEN 20 AND 30;"
+ },
+ {
+  "instruction": "查询案件地点在杨浦区的所有案件的案件名称、受害人姓名和嫌疑人姓名。",
+  "output": "SELECT AJMC, BHRXM, XYRXM FROM CASES WHERE AJDD_Q = '杨浦区';"
+ },
+ {
+  "instruction": "查询案件类型为抢劫案件且案件地点在虹口区的案件总数。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_Q = '虹口区';"
+ },
+ {
+  "instruction": "查询嫌疑人姓名为张三的所有案件的案件类型、案件描述和案件时间。",
+  "output": "SELECT AJLX, AJMS, AJSJ FROM CASES WHERE XYRXM = '张三';"
+ },
+ {
+  "instruction": "请查询案件编号为20201001的案件名称。",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH = '20201001'"
+ },
+ {
+  "instruction": "请查询案发时间在2020年的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE YEAR(AJSJ) = 2020"
+ },
+ {
+  "instruction": "请查询案件类型为性侵案件且发生在上海市的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND AJDD_S = '上海市'"
+ },
+ {
+  "instruction": "请查询案发地点在浦东新区的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJDD_Q = '浦东新区'"
+ },
+ {
+  "instruction": "请查询案发地点在黄浦区且涉及被害人为女性的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '黄浦区' AND BHRXB = '女'"
+ },
+ {
+  "instruction": "请查询案件发生时间在2020年且嫌疑人年龄大于30岁的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE YEAR(AJSJ) = 2020 AND XYRNL > 30"
+ },
+ {
+  "instruction": "请查询案件发生时间在2020年且嫌疑人体重超过70kg的案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE YEAR(AJSJ) = 2020 AND XYRTZ > 70"
+ },
+ {
+  "instruction": "请查询案件中嫌疑人姓名为张三的所有案件的案发时间和案件地点。",
+  "output": "SELECT AJSJ, AJDD FROM CASES WHERE XYRXM = '张三'"
+ },
+ {
+  "instruction": "请查询案件中嫌疑人身高最高的案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES)"
+ },
+ {
+  "instruction": "请查询案件中嫌疑人年龄最小的案件的案发地点。",
+  "output": "SELECT AJDD FROM CASES WHERE XYRNL = (SELECT MIN(XYRNL) FROM CASES)"
+ },
+ {
+  "instruction": "查询案件编号为20200501的案件的发生地点",
+  "output": "SELECT AJDD FROM CASES WHERE AJBH='20200501';"
+ },
+ {
+  "instruction": "查询案件类型为抢劫案件且发生在上海市徐汇区的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_S='上海市' AND AJDD_Q='徐汇区';"
+ },
+ {
+  "instruction": "查询案件发生时间为2020年的所有案件信息",
+  "output": "SELECT * FROM CASES WHERE YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "查询案件地点为公园的所有抢劫案件的年龄最大的嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD='公园' AND AJLX='抢劫案件' ORDER BY XYRNL DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件描述包含武器的所有案件的案件类型和案发时间",
+  "output": "SELECT AJLX, AJSJ FROM CASES WHERE AJMS LIKE '%武器%';"
+ },
+ {
+  "instruction": "查询案件嫌疑人性别为男性且身高在180cm以上的所有案件的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE XYRXB='男' AND XYRSG>=180;"
+ },
+ {
+  "instruction": "查询案件嫌疑人体重最大的被害人身份证号",
+  "output": "SELECT BHRSFZH FROM CASES ORDER BY BHRTZ DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件嫌疑人外貌描述中包含疤痕的所有案件的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE XYRWM LIKE '%疤痕%';"
+ },
+ {
+  "instruction": "查询案件嫌疑人身高最高的案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件受害人是14周岁以下女性的案件的案件编号和嫌疑人姓名",
+  "output": "SELECT AJBH, XYRXM FROM CASES WHERE BHRNL<=14 AND BHRXB='女';"
+ },
+ {
+  "instruction": "查询案件名称为性侵案件中，发生在上海市黄浦区的案件数量有多少。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND AJDD_S = '上海市' AND AJDD_Q = '黄浦区';"
+ },
+ {
+  "instruction": "查询案件名称为抢劫案件的案件数量和总体重。",
+  "output": "SELECT COUNT(*), SUM(BHRTZ) FROM CASES WHERE AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询案件地点为公园并且被害人年龄小于等于12岁的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD LIKE '%公园%' AND BHRNL <= 12;"
+ },
+ {
+  "instruction": "查询嫌疑人姓名中含有'张'字的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE XYRXM LIKE '%张%';"
+ },
+ {
+  "instruction": "查询案件地点包含'路'字并且发生在2021年的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD LIKE '%路%' AND YEAR(AJSJ) = 2021;"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件并且被害人性别为女性的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '偷盗案件' AND BHRXB = '女';"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的案件的案件编号和发生时间。",
+  "output": "SELECT AJBH, AJSJ FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查询案件地点为徐汇区且案件类型不是偷盗案件的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '徐汇区' AND AJLX != '偷盗案件';"
+ },
+ {
+  "instruction": "查询案件地点为普陀区或虹口区的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q IN ('普陀区', '虹口区');"
+ },
+ {
+  "instruction": "请查询所有性侵案件的信息",
+  "output": "SELECT * FROM CASES WHERE AJLX='性侵案件'"
+ },
+ {
+  "instruction": "请查询2020年发生在公园的所有案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJDD LIKE '%公园%' AND AJSJ >= '2020-01-01' AND AJSJ <= '2020-12-31'"
+ },
+ {
+  "instruction": "请查询所有案件中嫌疑人体重最轻的姓名和身高",
+  "output": "SELECT XYRXM, XYRSG FROM CASES ORDER BY XYRTZ ASC LIMIT 1"
+ },
+ {
+  "instruction": "请查询被害人姓名为张三且案件地点在徐汇区的所有案件的案件编号和案件类型",
+  "output": "SELECT AJBH, AJLX FROM CASES WHERE BHRXM='张三' AND AJDD_Q='徐汇区'"
+ },
+ {
+  "instruction": "请查询所有被害人的年龄总和",
+  "output": "SELECT SUM(BHRNL) FROM CASES"
+ },
+ {
+  "instruction": "请查询案件地点为虹口区且嫌疑人性别为女的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='虹口区' AND XYRXB='女'"
+ },
+ {
+  "instruction": "请查询案件地点为金山区的所有案件的嫌疑人外貌描述",
+  "output": "SELECT XYRWM FROM CASES WHERE AJDD_Q='金山区'"
+ },
+ {
+  "instruction": "请查询年龄最大的嫌疑人姓名和身高",
+  "output": "SELECT XYRXM, XYRSG FROM CASES ORDER BY XYRNL DESC LIMIT 1"
+ },
+ {
+  "instruction": "请查询案件地点以'公园'结尾的所有案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJDD LIKE '%公园'"
+ },
+ {
+  "instruction": "请查询嫌疑人身高在170cm到180cm之间且案件发生时间是2021年的所有案件的案件地点-城市和案件地点-区县",
+  "output": "SELECT AJDD_S, AJDD_Q FROM CASES WHERE XYRSG BETWEEN 170 AND 180 AND AJSJ >= '2021-01-01' AND AJSJ <= '2021-12-31'"
+ },
+ {
+  "instruction": "查询2019年发生的所有性侵案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX='性侵案件' AND AJSJ >= '2019-01-01' AND AJSJ <= '2019-12-31'"
+ },
+ {
+  "instruction": "查询发生在上海市虹口区的所有案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJDD_S='上海市' AND AJDD_Q='虹口区'"
+ },
+ {
+  "instruction": "查询所有抢劫案件中年龄在20岁以下的被害人的姓名和身高",
+  "output": "SELECT BHRXM, BHRSG FROM CASES WHERE AJLX='抢劫案件' AND BHRNL <= 20"
+ },
+ {
+  "instruction": "查询2020年发生在嘉定区的偷盗案件中，嫌疑人性别为女性的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJSJ >= '2020-01-01' AND AJSJ <= '2020-12-31' AND AJLX='偷盗案件' AND AJDD_Q='嘉定区' AND XYRXB='女'"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人的姓名和案件类型",
+  "output": "SELECT XYRXM, AJLX FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES)"
+ },
+ {
+  "instruction": "查询案件发生在2021年的所有案件的地点和案件类型",
+  "output": "SELECT AJDD, AJLX FROM CASES WHERE AJSJ >= '2021-01-01' AND AJSJ <= '2021-12-31'"
+ },
+ {
+  "instruction": "查询所有性侵案件中被害人身高最矮的案件的案件名称和案件地点",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE AJLX='性侵案件' AND BHRSG = (SELECT MIN(BHRSG) FROM CASES WHERE AJLX='性侵案件')"
+ },
+ {
+  "instruction": "查询嫌疑人体重最重的性侵案件中，被害人的姓名和被害人身高",
+  "output": "SELECT BHRXM, BHRSG FROM CASES WHERE AJLX='性侵案件' AND XYRTZ = (SELECT MAX(XYRTZ) FROM CASES WHERE AJLX='性侵案件')"
+ },
+ {
+  "instruction": "查询案件地点为上海市闵行区的所有案件的案件类型和案件描述",
+  "output": "SELECT AJLX, AJMS FROM CASES WHERE AJDD_S='上海市' AND AJDD_Q='闵行区'"
+ },
+ {
+  "instruction": "查询所有嫌疑人年龄大于30岁且体重小于60kg的抢劫案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX='抢劫案件' AND XYRNL > 30 AND XYRTZ < 60"
+ },
+ {
+  "instruction": "查询2019年抢劫案件中，在黄浦区发生的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='黄浦区' AND YEAR(AJSJ)='2019';"
+ },
+ {
+  "instruction": "查询青浦区发生的偷盗案件中，被害人年龄大于50岁的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='偷盗案件' AND AJDD_Q='青浦区' AND BHRNL>50;"
+ },
+ {
+  "instruction": "查询所有性侵案件中，嫌疑人姓名为张三的案件详情。",
+  "output": "SELECT * FROM CASES WHERE AJLX='性侵案件' AND XYRXM='张三';"
+ },
+ {
+  "instruction": "查询2018年至今，在浦东新区发生的所有案件的描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJDD_Q='浦东新区' AND YEAR(AJSJ)>=2018;"
+ },
+ {
+  "instruction": "查询宝山区发生的性侵案件中，嫌疑人体重最轻的案件的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJLX='性侵案件' AND AJDD_Q='宝山区' ORDER BY XYRTZ ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有案件中，被害人和嫌疑人的性别皆为女性的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE BHRXB='女' AND XYRXB='女';"
+ },
+ {
+  "instruction": "查询发生在崇明区的所有案件中，嫌疑人年龄大于等于30岁且身高低于170cm的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='崇明区' AND XYRNL>=30 AND XYRSG<170;"
+ },
+ {
+  "instruction": "查询发生在公园区域的所有性侵案件中，被害人身高最高的案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' ORDER BY BHRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有案件中，嫌疑人身份证号以'310101'开头的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE XYRSFZH LIKE '310101%';"
+ },
+ {
+  "instruction": "查询发生在普陀区的性侵案件中，最年轻的被害人的年龄。",
+  "output": "SELECT MIN(BHRNL) FROM CASES WHERE AJLX='性侵案件' AND AJDD_Q='普陀区';"
+ },
+ {
+  "instruction": "查询案件地点在上海市、发生时间在2020年的所有案件",
+  "output": "SELECT * FROM CASES WHERE AJDD_S = '上海市' AND YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询案件类型为性侵案件，并且受害人年龄大于等于14岁的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND BHRNL >= 14;"
+ },
+ {
+  "instruction": "查询案件地点在徐汇区的所有案件发生时间",
+  "output": "SELECT AJSJ FROM CASES WHERE AJDD_Q = '徐汇区';"
+ },
+ {
+  "instruction": "查询案件地点在长宁区且嫌疑人性别为男性的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '长宁区' AND XYRXB = '男';"
+ },
+ {
+  "instruction": "查询案件地点包含公园的所有案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询案件地点在黄浦区的案件中，最早的案件发生时间",
+  "output": "SELECT MIN(AJSJ) FROM CASES WHERE AJDD_Q = '黄浦区';"
+ },
+ {
+  "instruction": "查询案件地点在虹口区且嫌疑人身高最高的案件嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_Q = '虹口区' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件类型为抢劫案件的案件数量，并按案件发生时间降序排列",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '抢劫案件' ORDER BY AJSJ DESC;"
+ },
+ {
+  "instruction": "查询案件地点不在浦东新区的所有案件嫌疑人姓名和被害人姓名",
+  "output": "SELECT XYRXM, BHRXM FROM CASES WHERE AJDD_Q <> '浦东新区';"
+ },
+ {
+  "instruction": "查询案件地点在浦东新区且被害人外貌包含疤痕的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '浦东新区' AND BHRWM LIKE '%疤痕%';"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件，受害人是14周岁以下女性的，身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJSJ LIKE '2020%' AND AJLX='性侵案件' AND AJDD LIKE '%公园%' AND BHRNL < 14 AND BHRXB='女' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在上海市的偷盗案件，并描述案件现场。",
+  "output": "SELECT AJMS FROM CASES WHERE AJDD_S='上海市' AND AJLX='偷盗案件';"
+ },
+ {
+  "instruction": "查询发生在徐汇区的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJDD_Q='徐汇区';"
+ },
+ {
+  "instruction": "查询嫌疑人姓李的案件的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE XYRXM LIKE '李%' OR XYRXM LIKE '%李%';"
+ },
+ {
+  "instruction": "查询案件描述中包含关键字'抢劫'的案件的案件类型。",
+  "output": "SELECT AJLX FROM CASES WHERE AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询2021年发生在浦东新区的抢劫案件的嫌疑人身高最矮的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJSJ LIKE '2021%' AND AJLX='抢劫案件' AND AJDD_Q='浦东新区' ORDER BY XYRSG ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件编号为'AJ001'的案件的被害人身高和体重。",
+  "output": "SELECT BHRSG, BHRTZ FROM CASES WHERE AJBH='AJ001';"
+ },
+ {
+  "instruction": "查询案件时间在2020年3月1日至2021年3月1日之间的所有案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE AJSJ BETWEEN '2020-03-01' AND '2021-03-01';"
+ },
+ {
+  "instruction": "查询案件地点为黄浦区的所有性侵案件的被害人姓名和年龄。",
+  "output": "SELECT BHRXM, BHRNL FROM CASES WHERE AJDD_Q='黄浦区' AND AJLX='性侵案件';"
+ },
+ {
+  "instruction": "查询案件描述中不包含关键字'杀人'的案件的案件地点-区县。",
+  "output": "SELECT AJDD_Q FROM CASES WHERE AJMS NOT LIKE '%杀人%';"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' AND YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "查询案件描述中包含关键词“疑似毒品”的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJMS LIKE '%疑似毒品%';"
+ },
+ {
+  "instruction": "查询发生在上海市嘉定区的所有偷盗案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='偷盗案件' AND AJDD_S='上海' AND AJDD_Q='嘉定区';"
+ },
+ {
+  "instruction": "查询年龄最小的被害人姓名和案件地点。",
+  "output": "SELECT BHRXM, AJDD FROM CASES WHERE BHRNL=(SELECT MIN(BHRNL) FROM CASES);"
+ },
+ {
+  "instruction": "查询性侵案件中嫌疑人体重超过80kg的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND XYRTZ>80;"
+ },
+ {
+  "instruction": "查询发生在2020年9月的抢劫案件的案件名称和案件时间。",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE AJLX='抢劫案件' AND YEAR(AJSJ)=2020 AND MONTH(AJSJ)=9;"
+ },
+ {
+  "instruction": "查询被害人是14周岁以下女性的性侵案件中，嫌疑人身高最高的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND BHRXB='女' AND BHRNL<=14 ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件描述中包含“抢劫”和“枪支”的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMS LIKE '%抢劫%' AND AJMS LIKE '%枪支%';"
+ },
+ {
+  "instruction": "查询案件时间在2021年之前的所有案件的案件名称、嫌疑人姓名和被害人姓名。",
+  "output": "SELECT AJMC, XYRXM, BHRXM FROM CASES WHERE YEAR(AJSJ)<2021;"
+ },
+ {
+  "instruction": "查询案件地点为普陀区，并且案件名称中含有“持刀”的所有案件的受害人姓名和嫌疑人姓名。",
+  "output": "SELECT BHRXM, XYRXM FROM CASES WHERE AJDD_Q='普陀区' AND AJMC LIKE '%持刀%';"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件中，受害人是14周岁以下女性的，身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' AND BHRNL < 14 AND BHRXB = '女' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在上海市黄浦区的偷盗案件中，时间在2021年3月1日至2021年3月31日期间的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='偷盗案件' AND AJDD_S = '上海市' AND AJDD_Q = '黄浦区' AND AJSJ >= '2021-03-01' AND AJSJ <= '2021-03-31';"
+ },
+ {
+  "instruction": "查询发生在长宁区的抢劫案件中，年龄在30岁以上的嫌疑人的平均身高。",
+  "output": "SELECT AVG(XYRSG) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='长宁区' AND XYRNL > 30;"
+ },
+ {
+  "instruction": "查询被害人身高在160cm以上的所有性侵案件的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJLX='性侵案件' AND BHRSG > 160;"
+ },
+ {
+  "instruction": "查询发生在徐汇区的嫌疑人体重最重的偷盗案件的案件名称。",
+  "output": "SELECT AJMC FROM CASES WHERE AJLX='偷盗案件' AND AJDD_Q='徐汇区' ORDER BY XYRTZ DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件描述中包含“抢劫”关键词的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询发生在普陀区的一起抢劫案件中，涉案嫌疑人和被害人的总人数。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='普陀区';"
+ },
+ {
+  "instruction": "查询案件类型为性侵案件且受害人外貌描述中包含“短发”的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND BHRWM LIKE '%短发%';"
+ },
+ {
+  "instruction": "查询所有抢劫案件的案件名称和案件时间。",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE AJLX='抢劫案件';"
+ },
+ {
+  "instruction": "查询案件地点为嘉定区、松江区或青浦区的所有偷盗案件的年龄最大的被害人姓名。",
+  "output": "SELECT BHRXM FROM CASES WHERE AJLX='偷盗案件' AND (AJDD_Q='嘉定区' OR AJDD_Q='松江区' OR AJDD_Q='青浦区') ORDER BY BHRNL DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES;"
+ },
+ {
+  "instruction": "查询发生在2020年的所有案件",
+  "output": "SELECT * FROM CASES WHERE YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "查询发生在上海市的所有抢劫案件的案件名称和案件时间",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE AJDD_S = '上海市' AND AJLX = '抢劫案件';"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的性侵案件的案件编号和受害人姓名",
+  "output": "SELECT AJBH, BHRXM FROM CASES WHERE AJLX = '性侵案件' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询年龄小于等于14周岁的受害人的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE BHRNL <= 14;"
+ },
+ {
+  "instruction": "查询嫌疑人是女性且身高大于180cm的案件的案件地点区县",
+  "output": "SELECT AJDD_Q FROM CASES WHERE XYRXB = '女' AND XYRSG > 180;"
+ },
+ {
+  "instruction": "查询外貌描述包含有纹身的抢劫案件的案件名称和案件地点",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE AJLX = '抢劫案件' AND XYRWM LIKE '%纹身%';"
+ },
+ {
+  "instruction": "查询被害人身高和体重都在150cm和50kg以上的性侵案件的案件编号和案件时间",
+  "output": "SELECT AJBH, AJSJ FROM CASES WHERE AJLX = '性侵案件' AND BHRSG >= 150 AND BHRTZ >= 50;"
+ },
+ {
+  "instruction": "查询嫌疑人身份证号为xxx的案件的案件名称和案件描述",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE XYRSFZH = 'xxx';"
+ },
+ {
+  "instruction": "查找2019年发生在徐汇区的抢劫案件中，嫌疑人身高最高的人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_Q = '徐汇区' AND YEAR(AJSJ) = 2019 ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有发生在上海市的案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJDD_S = '上海市';"
+ },
+ {
+  "instruction": "查找所有发生在黄浦区的案件中，案件类型是偷盗案件的案件描述和案件时间。",
+  "output": "SELECT AJMS, AJSJ FROM CASES WHERE AJDD_Q = '黄浦区' AND AJLX = '偷盗案件';"
+ },
+ {
+  "instruction": "查询案件编号为AJ1001的案件的案件描述和案件地点。",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJBH = 'AJ1001';"
+ },
+ {
+  "instruction": "查找案件地点为上海市黄浦区的案件中，嫌疑人性别是女性的被害人的姓名和身份证号。",
+  "output": "SELECT BHRXM, BHRSFZH FROM CASES WHERE AJDD_S = '上海市' AND AJDD_Q = '黄浦区' AND XYRXB = '女';"
+ },
+ {
+  "instruction": "查询2020年发生的所有性侵案件的案件名称和案件地点。",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE AJLX = '性侵案件' AND YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查找所有案件中，被害人年龄最小的案件嫌疑人的姓名和身份证号。",
+  "output": "SELECT XYRXM, XYRSFZH FROM CASES ORDER BY BHRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有案件的嫌疑人姓名、案件类型和案件时间。",
+  "output": "SELECT XYRXM, AJLX, AJSJ FROM CASES;"
+ },
+ {
+  "instruction": "查找身高在160cm以上、体重在50kg以下的偷盗案件嫌疑人的姓名和案件描述。",
+  "output": "SELECT XYRXM, AJMS FROM CASES WHERE AJLX = '偷盗案件' AND XYRSG > 160 AND XYRTZ < 50;"
+ },
+ {
+  "instruction": "查询案件地点是浦东新区且发生在2018年的所有案件的案件编号和嫌疑人年龄。",
+  "output": "SELECT AJBH, XYRNL FROM CASES WHERE AJDD_Q = '浦东新区' AND YEAR(AJSJ) = 2018;"
+ },
+ {
+  "instruction": "查询案件名称为性侵案件的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件';"
+ },
+ {
+  "instruction": "查询发生在上海市徐汇区的偷盗案件中，嫌疑人的姓名和身份证号。",
+  "output": "SELECT XYRXM, XYRSFZH FROM CASES WHERE AJLX='偷盗案件' AND AJDD_S='上海市' AND AJDD_Q='徐汇区';"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年且被害人性别为女性的抢劫案件的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJLX='抢劫案件' AND YEAR(AJSJ)=2020 AND BHRXB='女';"
+ },
+ {
+  "instruction": "查询案件发生在公园的所有性侵案件的嫌疑人身高最高的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件描述中包含关键词“暴力”的所有抢劫案件的案件编号和受害人姓名。",
+  "output": "SELECT AJBH, BHRXM FROM CASES WHERE AJLX='抢劫案件' AND AJMS LIKE '%暴力%';"
+ },
+ {
+  "instruction": "查询2020年在普陀区发生的抢劫案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='普陀区' AND YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "查询案件发生在2020年的所有案件的案件编号和案件类型。",
+  "output": "SELECT AJBH, AJLX FROM CASES WHERE YEAR(AJSJ)=2020;"
+ },
+ {
+  "instruction": "查询嫌疑人为男性、年龄在20岁以下、身高在170cm以上的所有案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE Xyrxb='男' AND XYRNL<20 AND XYRSG>=170;"
+ },
+ {
+  "instruction": "查询案件发生在浦东新区且被害人年龄最小的抢劫案件的嫌疑人姓名和身份证号。",
+  "output": "SELECT XYRXM, XYRSFZH FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='浦东新区' ORDER BY BHRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有案件中，发生时间最早的案件的案件名称和案件地点。",
+  "output": "SELECT AJMC, AJDD FROM CASES ORDER BY AJSJ ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询所有性侵案件中嫌疑人姓李的案件信息",
+  "output": "SELECT * FROM CASES WHERE AJLX = '性侵案件' AND XYRXM LIKE '李%'"
+ },
+ {
+  "instruction": "查询2020年发生的所有案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE YEAR(AJSJ) = 2020"
+ },
+ {
+  "instruction": "查询发生在黄浦区的抢劫案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_Q = '黄浦区'"
+ },
+ {
+  "instruction": "查询受害人身高最高的性侵案件的案件编号和受害人姓名",
+  "output": "SELECT AJBH, BHRXM FROM CASES WHERE AJLX = '性侵案件' ORDER BY BHRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询年龄在18岁以下的女性受害人在2021年发生的偷盗案件的案件地点",
+  "output": "SELECT AJDD FROM CASES WHERE AJLX = '偷盗案件' AND BHRXB = '女' AND BHRNL < 18 AND YEAR(AJSJ) = 2021"
+ },
+ {
+  "instruction": "查询发生在上海市杨浦区的所有案件的案件类型和案件描述",
+  "output": "SELECT AJLX, AJMS FROM CASES WHERE AJDD_S = '上海市' AND AJDD_Q = '杨浦区'"
+ },
+ {
+  "instruction": "查询嫌疑人体重在60kg以上的偷盗案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJLX = '偷盗案件' AND XYRTZ > 60"
+ },
+ {
+  "instruction": "查询发生时间在2022年1月1日至5月31日之间的所有案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJSJ BETWEEN '2022-01-01' AND '2022-05-31'"
+ },
+ {
+  "instruction": "查询被害人姓王的性侵案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJLX = '性侵案件' AND BHRXM LIKE '王%'"
+ },
+ {
+  "instruction": "查询案件地点为长宁区且受害人年龄在30岁至40岁之间的所有案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJDD_Q = '长宁区' AND BHRNL BETWEEN 30 AND 40"
+ },
+ {
+  "instruction": "查询案件编号为202001的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH='202001';"
+ },
+ {
+  "instruction": "查询2020年发生在公园的所有案件编号",
+  "output": "SELECT AJBH FROM CASES WHERE AJSJ >= '2020-01-01 00:00:00' AND AJSJ <= '2020-12-31 23:59:59' AND AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询所有性侵案件中，发生在晚上的案件地点",
+  "output": "SELECT AJDD FROM CASES WHERE AJLX='性侵案件' AND HOUR(AJSJ) >= 18 OR HOUR(AJSJ) <= 6;"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的性侵案件受害人姓名",
+  "output": "SELECT BHRXM FROM CASES WHERE AJLX='性侵案件' AND XYRSG=(SELECT MAX(XYRSG) FROM CASES WHERE AJLX='性侵案件');"
+ },
+ {
+  "instruction": "查询年龄在14岁以下的性侵案件受害人身高最高的嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND BHRNL < 14 AND XYRSG=(SELECT MAX(XYRSG) FROM CASES WHERE AJLX='性侵案件' AND BHRNL < 14);"
+ },
+ {
+  "instruction": "查询性侵案件中，嫌疑人体重最重的受害人姓名和案件描述",
+  "output": "SELECT BHRXM, AJMS FROM CASES WHERE AJLX='性侵案件' AND XYRTZ=(SELECT MAX(XYRTZ) FROM CASES WHERE AJLX='性侵案件');"
+ },
+ {
+  "instruction": "查询案件发生在上海市黄浦区的所有性侵案件的嫌疑人身高",
+  "output": "SELECT XYRSG FROM CASES WHERE AJLX='性侵案件' AND AJDD_S='上海市' AND AJDD_Q='黄浦区';"
+ },
+ {
+  "instruction": "查询案件描述中包含“抢劫”的所有案件受害人姓名",
+  "output": "SELECT BHRXM FROM CASES WHERE AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询案件发生在上海市的所有案件嫌疑人的身份证号",
+  "output": "SELECT XYRSFZH FROM CASES WHERE AJDD_S='上海市';"
+ },
+ {
+  "instruction": "查询案件发生在上海市静安区的偷盗案件被害人外貌描述",
+  "output": "SELECT BHRWM FROM CASES WHERE AJLX='偷盗案件' AND AJDD_S='上海市' AND AJDD_Q='静安区';"
+ },
+ {
+  "instruction": "查询案件类型为性侵案件、地点在上海市、发生在2020年的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND AJDD_S = '上海市' AND AJSJ LIKE '2020%';"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件、被害人年龄在18岁以下、发生在徐汇区的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '偷盗案件' AND BHRNL < 18 AND AJDD_Q = '徐汇区';"
+ },
+ {
+  "instruction": "查询案件地点为长宁区、发生在2021年的所有案件信息。",
+  "output": "SELECT * FROM CASES WHERE AJDD_Q = '长宁区' AND AJSJ LIKE '2021%';"
+ },
+ {
+  "instruction": "查询案件地点为金山区、发生在2020年7月1日至2021年6月30日期间的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '金山区' AND AJSJ BETWEEN '2020-07-01 00:00:00' AND '2021-06-30 23:59:59';"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查询案件描述包含“抢劫”的所有案件信息。",
+  "output": "SELECT * FROM CASES WHERE AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询年龄最小的被害人的姓名、性别和年龄。",
+  "output": "SELECT BHRXM, BHRXB, MIN(BHRNL) FROM CASES;"
+ },
+ {
+  "instruction": "查询案件地点在虹口区或杨浦区的所有案件信息。",
+  "output": "SELECT * FROM CASES WHERE AJDD_Q IN ('虹口区', '杨浦区');"
+ },
+ {
+  "instruction": "查询案件类型为性侵案件、嫌疑人年龄在20岁以上的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND XYRNL > 20;"
+ },
+ {
+  "instruction": "查询案件地点不在静安区和松江区的所有案件信息。",
+  "output": "SELECT * FROM CASES WHERE AJDD_Q NOT IN ('静安区', '松江区');"
+ },
+ {
+  "instruction": "查询所有案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES"
+ },
+ {
+  "instruction": "查询所有性侵案件的嫌疑人姓名和年龄",
+  "output": "SELECT XYRXM, XYRNL FROM CASES WHERE AJLX = '性侵案件'"
+ },
+ {
+  "instruction": "查询发生在上海市的抢劫案件的案件名称和案件描述",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_S = '上海市'"
+ },
+ {
+  "instruction": "查询所有案件发生地点在黄浦区的案件编号和被害人姓名",
+  "output": "SELECT AJBH, BHRXM FROM CASES WHERE AJDD_Q = '黄浦区'"
+ },
+ {
+  "instruction": "查询所有案件的案件名称、案件地点和案件时间",
+  "output": "SELECT AJMC, AJDD, AJSJ FROM CASES"
+ },
+ {
+  "instruction": "查询发生在2020年的所有偷盗案件的案件编号和嫌疑人姓名",
+  "output": "SELECT AJBH, XYRXM FROM CASES WHERE AJLX = '偷盗案件' AND YEAR(AJSJ) = 2020"
+ },
+ {
+  "instruction": "查询发生在浦东新区的性侵案件中，被害人年龄最小的案件编号和嫌疑人身高",
+  "output": "SELECT AJBH, XYRSG FROM CASES WHERE AJLX = '性侵案件' AND AJDD_Q = '浦东新区' ORDER BY BHRNL ASC LIMIT 1"
+ },
+ {
+  "instruction": "查询所有案件中，嫌疑人体重超过80kg的案件描述和被害人姓名",
+  "output": "SELECT AJMS, BHRXM FROM CASES WHERE XYRTZ > 80"
+ },
+ {
+  "instruction": "查询案件编号为123456的案件的嫌疑人外貌描述和被害人外貌描述",
+  "output": "SELECT XYRWM, BHRWM FROM CASES WHERE AJBH = '123456'"
+ },
+ {
+  "instruction": "查询发生在2020年上海市的性侵案件中，嫌疑人身高最高的姓名和案件地点",
+  "output": "SELECT XYRXM, AJDD FROM CASES WHERE AJLX = '性侵案件' AND AJDD_S = '上海市' AND YEAR(AJSJ) = 2020 ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX = '性侵案件'"
+ },
+ {
+  "instruction": "查询所有发生在2020年的案件的地点城市和案件描述",
+  "output": "SELECT AJDD_S, AJMS FROM CASES WHERE YEAR(AJSJ) = 2020"
+ },
+ {
+  "instruction": "查询所有发生在公园的案件的案件编号和案件类型",
+  "output": "SELECT AJBH, AJLX FROM CASES WHERE AJDD LIKE '%公园%'"
+ },
+ {
+  "instruction": "查询所有受害人年龄在14周岁以下、性别为女性且发生在公园的案件的案件描述和发生时间",
+  "output": "SELECT AJMS, AJSJ FROM CASES WHERE BHRNL < 14 AND BHRXB = '女' AND AJDD LIKE '%公园%'"
+ },
+ {
+  "instruction": "查询所有嫌疑人年龄在30岁以上、身高最高且性别为女性的案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE XYRNL > 30 AND XYRXB = '女' ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询案件地点在徐汇区且发生时间为2021年1月的案件的案件名称和被害人姓名",
+  "output": "SELECT AJMC, BHRXM FROM CASES WHERE AJDD_Q = '徐汇区' AND MONTH(AJSJ) = 1 AND YEAR(AJSJ) = 2021"
+ },
+ {
+  "instruction": "查询所有案件的案件地点和嫌疑人外貌",
+  "output": "SELECT AJDD, XYRWM FROM CASES"
+ },
+ {
+  "instruction": "查询案件类型为抢劫案件或偷盗案件的案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX IN ('抢劫案件', '偷盗案件')"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的案件的案件名称和案件地点",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES)"
+ },
+ {
+  "instruction": "查询嫌疑人体重最重的案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE XYRTZ = (SELECT MAX(XYRTZ) FROM CASES)"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件中，受害人是14周岁以下女性的，身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' AND BHRXB='女' AND BHRNL<14 ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询抢劫案件中受害人身高最高的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='抢劫案件' ORDER BY BHRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件地点在上海市普陀区或长宁区的所有偷盗案件的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJLX='偷盗案件' AND (AJDD_Q='普陀区' OR AJDD_Q='长宁区');"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年12月的所有性侵案件的案件名称和案件地点。",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE AJLX='性侵案件' AND AJSJ BETWEEN '2020-12-01' AND '2020-12-31';"
+ },
+ {
+  "instruction": "查询嫌疑人年龄在20岁以下，性别为男性，身高在170cm以上的所有案件的案件类型和案件时间。",
+  "output": "SELECT AJLX, AJSJ FROM CASES WHERE XYRNL<20 AND XYRXB='男' AND XYRSG>170;"
+ },
+ {
+  "instruction": "查询被害人外貌描述中包含“短发”的所有案件的案件地点-城市和案件地点-区县。",
+  "output": "SELECT AJDD_S, AJDD_Q FROM CASES WHERE BHRWM LIKE '%短发%';"
+ },
+ {
+  "instruction": "查询案件地点-区县为徐汇区或闵行区的所有案件的案件编号和嫌疑人身份证号。",
+  "output": "SELECT AJBH, XYRSFZH FROM CASES WHERE AJDD_Q='徐汇区' OR AJDD_Q='闵行区';"
+ },
+ {
+  "instruction": "查询案件类型为性侵案件或偷盗案件的所有案件的案件名称和嫌疑人身高。",
+  "output": "SELECT AJMC, XYRSG FROM CASES WHERE AJLX='性侵案件' OR AJLX='偷盗案件';"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件发生时间在2021年以后的所有案件的案件类型和嫌疑人姓名。",
+  "output": "SELECT AJLX, XYRXM FROM CASES WHERE AJSJ>'2021-01-01';"
+ },
+ {
+  "instruction": "根据案件名称查找案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJMC = '案件名称';"
+ },
+ {
+  "instruction": "查找所有性侵案件的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "根据案件地点-区县为黄浦区查找案件编号、案件名称和案件时间",
+  "output": "SELECT AJBH, AJMC, AJSJ FROM CASES WHERE AJDD_Q = '黄浦区';"
+ },
+ {
+  "instruction": "查找案件地点在上海市普陀区且嫌疑人年龄小于等于18岁的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJDD_S = '上海市' AND AJDD_Q = '普陀区' AND XYRNL <= 18;"
+ },
+ {
+  "instruction": "查找案件地点在闵行区且发生时间在2020年之后的案件类型和案件描述",
+  "output": "SELECT AJLX, AJMS FROM CASES WHERE AJDD_Q = '闵行区' AND YEAR(AJSJ) > 2020;"
+ },
+ {
+  "instruction": "根据被害人姓名为张三和身高最高的嫌疑人姓名查找案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE BHRXM = '张三' AND XYRSG = (SELECT MAX(XYRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查找所有嫌疑人的姓名、性别和年龄",
+  "output": "SELECT XYRXM, XYRXB, XYRNL FROM CASES;"
+ },
+ {
+  "instruction": "根据案件地点为公园和案件类型为偷盗案件查找嫌疑人姓名和外貌",
+  "output": "SELECT XYRXM, XYRWM FROM CASES WHERE AJDD = '公园' AND AJLX = '偷盗案件';"
+ },
+ {
+  "instruction": "查找所有案件的案件类型和案件名称，按照案件时间降序排列",
+  "output": "SELECT AJLX, AJMC FROM CASES ORDER BY AJSJ DESC;"
+ },
+ {
+  "instruction": "查找嫌疑人性别为女性且年龄在20岁至30岁之间的案件描述和案件地点-区县",
+  "output": "SELECT AJMS, AJDD_Q FROM CASES WHERE XYRXB = '女' AND XYRNL BETWEEN 20 AND 30;"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX='性侵案件';"
+ },
+ {
+  "instruction": "查询2020年发生在公园的所有案件的案件描述和案件地点。",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJSJ BETWEEN '2020-01-01' AND '2020-12-31' AND AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询抢劫案件中年龄最小的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='抢劫案件' ORDER BY XYRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询被害人年龄在18岁以下的所有案件的案件地点和案件时间。",
+  "output": "SELECT AJDD, AJSJ FROM CASES WHERE BHRNL<18;"
+ },
+ {
+  "instruction": "查询所有外貌特征包含“高个子”的嫌疑人的姓名和性别。",
+  "output": "SELECT XYRXM, XYRXB FROM CASES WHERE XYRWM LIKE '%高个子%';"
+ },
+ {
+  "instruction": "查询案件地点在徐汇区且案件类型为偷盗案件的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='徐汇区' AND AJLX='偷盗案件';"
+ },
+ {
+  "instruction": "查询所有案件中身高最高的嫌疑人的姓名和身高。",
+  "output": "SELECT XYRXM, MAX(XYRSG) FROM CASES;"
+ },
+ {
+  "instruction": "查询被害人身高最低的嫌疑人的姓名和身高。",
+  "output": "SELECT XYRXM, MIN(BHRSG) FROM CASES;"
+ },
+ {
+  "instruction": "查询案件描述中包含“性侵”的所有案件的案件类型和案件地点。",
+  "output": "SELECT AJLX, AJDD FROM CASES WHERE AJMS LIKE '%性侵%';"
+ },
+ {
+  "instruction": "查询案件地点为上海市且案件类型为偷盗案件的所有案件的案件描述和案件时间。",
+  "output": "SELECT AJMS, AJSJ FROM CASES WHERE AJDD_S='上海市' AND AJLX='偷盗案件';"
+ },
+ {
+  "instruction": "请查询2020年发生在上海市的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_S = '上海市' AND AJLX = '性侵案件' AND AJSJ LIKE '2020-%'"
+ },
+ {
+  "instruction": "请查询发生在黄浦区的嫌疑人姓李的案件名称。",
+  "output": "SELECT AJMC FROM CASES WHERE AJLX = '性侵案件' AND AJDD_Q = '黄浦区' AND XYRXM LIKE '李%'"
+ },
+ {
+  "instruction": "请查询被害人生日在2005年之后的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE BHRNL > 15 AND AJSJ > '2005-01-01'"
+ },
+ {
+  "instruction": "请查询案件地点在徐汇区且被害人体重超过60kg的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJDD_Q = '徐汇区' AND BHRTZ > 60"
+ },
+ {
+  "instruction": "请查询嫌疑人身高最高的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES)"
+ },
+ {
+  "instruction": "请查询年龄段为18-30岁的嫌疑人在浦东新区发生的所有案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJDD_Q = '浦东新区' AND XYRNL BETWEEN 18 AND 30"
+ },
+ {
+  "instruction": "请查询所有案件中，案件描述中涉及到抢劫的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMS LIKE '%抢劫%'"
+ },
+ {
+  "instruction": "请查询嫌疑人姓王的案件地点和案件时间。",
+  "output": "SELECT AJDD, AJSJ FROM CASES WHERE XYRXM LIKE '王%'"
+ },
+ {
+  "instruction": "请查询年龄最小的被害人的姓氏和年龄。",
+  "output": "SELECT SUBSTRING(BHRXM, 1, 1) as 姓氏, MIN(BHRNL) as 最小年龄 FROM CASES"
+ },
+ {
+  "instruction": "请查询案件中嫌疑人体重最重的案件地点和案件类型。",
+  "output": "SELECT AJDD, AJLX FROM CASES WHERE XYRTZ = (SELECT MAX(XYRTZ) FROM CASES)"
+ },
+ {
+  "instruction": "查询案件编号为202001的案件的名称。",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH = '202001';"
+ },
+ {
+  "instruction": "查询案件编号为202001的案件的描述和发生时间。",
+  "output": "SELECT AJMS, AJSJ FROM CASES WHERE AJBH = '202001';"
+ },
+ {
+  "instruction": "查询发生在上海市黄浦区的所有性侵案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX = '性侵案件' AND AJDD_S = '上海市' AND AJDD_Q = '黄浦区';"
+ },
+ {
+  "instruction": "查询发生在2020年的所有抢劫案件的案件描述和嫌疑人姓名。",
+  "output": "SELECT AJMS, XYRXM FROM CASES WHERE AJLX = '抢劫案件' AND YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询案件发生地点是市中心的所有偷盗案件的案件编号和被害人姓名。",
+  "output": "SELECT AJBH, BHRXM FROM CASES WHERE AJLX = '偷盗案件' AND AJDD = '市中心';"
+ },
+ {
+  "instruction": "查询嫌疑人姓名为张三且年龄大于30岁的所有案件的案件类型和案件地点。",
+  "output": "SELECT AJLX, AJDD FROM CASES WHERE XYRXM = '张三' AND XYRNL > 30;"
+ },
+ {
+  "instruction": "查询发生在浦东新区的所有案件中，年龄最小的被害人的姓名和性别。",
+  "output": "SELECT BHRXM, BHRXB FROM CASES WHERE AJDD_Q = '浦东新区' ORDER BY BHRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在2020年的性侵案件中，年龄最小的被害人的身高和体重。",
+  "output": "SELECT BHRSG, BHRTZ FROM CASES WHERE AJLX = '性侵案件' AND YEAR(AJSJ) = 2020 ORDER BY BHRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询嫌疑人性别为女性且身高最高的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE XYRXB = '女' ORDER BY XYRSG DESC;"
+ },
+ {
+  "instruction": "查询发生在静安区的所有抢劫案件中，体重最重的嫌疑人的姓名和性别。",
+  "output": "SELECT XYRXM, XYRXB FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_Q = '静安区' ORDER BY XYRTZ DESC;"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件中，受害人是14周岁以下女性的，身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' AND BHRXB='女' AND BHRNL<14 ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在松江区的偷盗案件中，案件描述包含“入室盗窃”的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='偷盗案件' AND AJDD_Q='松江区' AND AJMS LIKE '%入室盗窃%';"
+ },
+ {
+  "instruction": "查询发生在浦东新区的抢劫案件中，嫌疑人年龄最小的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE AJLX='抢劫案件' AND AJDD_Q='浦东新区' ORDER BY XYRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件名称为“持刀抢劫”的案件发生地点及时间。",
+  "output": "SELECT AJDD, AJSJ FROM CASES WHERE AJMC='持刀抢劫';"
+ },
+ {
+  "instruction": "查询发生在普陀区的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='普陀区';"
+ },
+ {
+  "instruction": "查询发生在上海市的抢劫案件中，案件描述中包含“武器”的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='抢劫案件' AND AJDD_S='上海市' AND AJMS LIKE '%武器%';"
+ },
+ {
+  "instruction": "查询嫌疑人年龄在20岁及以上，身高高于180cm的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE XYRNL>=20 AND XYRSG>180;"
+ },
+ {
+  "instruction": "查询案件描述中包含“暴力”的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJMS LIKE '%暴力%';"
+ },
+ {
+  "instruction": "查询被害人年龄在10岁以下，嫌疑人外貌中包含“面目狰狞”的案件编号。",
+  "output": "SELECT AJBH FROM CASES WHERE BHRNL<10 AND XYRWM LIKE '%面目狰狞%';"
+ },
+ {
+  "instruction": "查询案件类型为“性侵案件”，且嫌疑人身高最矮的案件发生时间。",
+  "output": "SELECT AJSJ FROM CASES WHERE AJLX='性侵案件' ORDER BY XYRSG ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件编号为10001的案件的案件名称。",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH = '10001';"
+ },
+ {
+  "instruction": "查询案件发生在上海市的所有案件的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJDD_S = '上海市';"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件编号和案件发生时间。",
+  "output": "SELECT AJBH, AJSJ FROM CASES WHERE AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "查询发生在徐汇区的抢劫案件中年龄最小的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_Q = '徐汇区' ORDER BY XYRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在公园的偷盗案件中年龄最大的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX = '偷盗案件' AND AJDD LIKE '%公园%' ORDER BY XYRNL DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询发生在浦东新区的性侵案件中被害人是女性的案件数量。",
+  "output": "SELECT COUNT(*) AS 案件数量 FROM CASES WHERE AJLX = '性侵案件' AND AJDD_Q = '浦东新区' AND BHRXB = '女';"
+ },
+ {
+  "instruction": "查询发生在2020年的所有案件的案件描述和案件地点。",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询所有案件中嫌疑人身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查询案件编号为10002的案件中嫌疑人身高最低的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJBH = '10002' AND XYRSG = (SELECT MIN(XYRSG) FROM CASES WHERE AJBH = '10002');"
+ },
+ {
+  "instruction": "查询嫌疑人身份证号为'310************'的案件中嫌疑人体重最重的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE XYRSFZH = '310************' AND XYRTZ = (SELECT MAX(XYRTZ) FROM CASES WHERE XYRSFZH = '310************');"
+ },
+ {
+  "instruction": "查询发生在公园的性侵案件的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%'"
+ },
+ {
+  "instruction": "查询2020年发生在上海市的偷盗案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX='偷盗案件' AND AJDD_S='上海市' AND AJSJ >= '2020-01-01' AND AJSJ < '2021-01-01'"
+ },
+ {
+  "instruction": "查询被害人身高最高的抢劫案件中，嫌疑人的姓名和身份证号",
+  "output": "SELECT XYRXM, XYRSFZH FROM CASES WHERE AJLX='抢劫案件' ORDER BY BHRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询嫌疑人性别为女性的性侵案件中，被害人的年龄和体重",
+  "output": "SELECT BHRNL, BHRTZ FROM CASES WHERE AJLX='性侵案件' AND XYRXB='女'"
+ },
+ {
+  "instruction": "查询发生在长宁区且案件描述中包含关键词'暴力'的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q='长宁区' AND AJMS LIKE '%暴力%'"
+ },
+ {
+  "instruction": "查询所有抢劫案件的案件名称和案件时间",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE AJLX='抢劫案件'"
+ },
+ {
+  "instruction": "查询案件发生时间距离现在超过一年的偷盗案件的案件编号和案件类型",
+  "output": "SELECT AJBH, AJLX FROM CASES WHERE AJLX='偷盗案件' AND AJSJ < DATE_SUB(NOW(), INTERVAL 1 YEAR)"
+ },
+ {
+  "instruction": "查询案件发生在上海市普陀区且嫌疑人外貌包含关键词'眼镜'的性侵案件中，被害人的姓名和年龄",
+  "output": "SELECT BHRXM, BHRNL FROM CASES WHERE AJLX='性侵案件' AND AJDD_S='上海市' AND AJDD_Q='普陀区' AND XYRWM LIKE '%眼镜%'"
+ },
+ {
+  "instruction": "查询所有案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES"
+ },
+ {
+  "instruction": "查询嫌疑人身高超过180cm的案件中，被害人的姓名和身份证号",
+  "output": "SELECT BHRXM, BHRSFZH FROM CASES WHERE XYRSG > 180"
+ },
+ {
+  "instruction": "查询所有性侵案件的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX='性侵案件'"
+ },
+ {
+  "instruction": "查询发生在上海市的所有偷盗案件的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='偷盗案件' AND AJDD_S='上海市'"
+ },
+ {
+  "instruction": "查询年龄在18岁以下的被害人的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE BHRNL < 18"
+ },
+ {
+  "instruction": "查询所有案件的案件时间早于2021年的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE YEAR(AJSJ) < 2021"
+ },
+ {
+  "instruction": "查询嫌疑人姓名为张三且案件地点在黄浦区的案件编号",
+  "output": "SELECT AJBH FROM CASES WHERE XYRXM='张三' AND AJDD_Q='黄浦区'"
+ },
+ {
+  "instruction": "查询所有案件的案件类型和对应的嫌疑人年龄、身高和体重",
+  "output": "SELECT AJLX, XYRNL, XYRSG, XYRTZ FROM CASES"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人的姓名和案件时间",
+  "output": "SELECT XYRXM, AJSJ FROM CASES ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询被害人性别为女性的性侵案件的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJLX='性侵案件' AND BHRXB='女'"
+ },
+ {
+  "instruction": "查询案件描述中包含“抢劫”的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJMS LIKE '%抢劫%'"
+ },
+ {
+  "instruction": "查询发生在2020年并且案件地点在长宁区的偷盗案件的嫌疑人姓名和被害人姓名",
+  "output": "SELECT XYRXM, BHRXM FROM CASES WHERE AJLX='偷盗案件' AND YEAR(AJSJ)=2020 AND AJDD_Q='长宁区'"
+ },
+ {
+  "instruction": "给出2020年发生在公园的性侵案件中，受害人是14周岁以下女性的，身高最高的嫌疑人的姓名。",
+  "output": "SELECT XYRXM FROM CASES WHERE AJSJ LIKE '2020%' AND AJLX='性侵案件' AND AJDD LIKE '%公园%' AND BHRXB='女' AND BHRNL<14 ORDER BY XYRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "列出徐汇区发生的所有偷盗案件的案件编号和案件描述。",
+  "output": "SELECT AJBH,AJMS FROM CASES WHERE AJDD_Q='徐汇区' AND AJLX='偷盗案件';"
+ },
+ {
+  "instruction": "给出所有年龄大于等于18岁的嫌疑人的姓名和身份证号。",
+  "output": "SELECT XYRXM,XYRSFZH FROM CASES WHERE XYRNL>=18;"
+ },
+ {
+  "instruction": "列出黄浦区发生的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH,AJMC FROM CASES WHERE AJDD_Q='黄浦区';"
+ },
+ {
+  "instruction": "给出所有案件发生时间在2019年到2020年之间的抢劫案件的案件描述和案件发生的详细地点。",
+  "output": "SELECT AJMS,AJDD FROM CASES WHERE AJSJ BETWEEN '2019-01-01' AND '2020-12-31' AND AJLX='抢劫案件';"
+ },
+ {
+  "instruction": "给出所有外貌为“短发”且身高大于170cm的嫌疑人的姓名和案件发生地点。",
+  "output": "SELECT XYRXM,AJDD FROM CASES WHERE XYRWM='短发' AND XYRSG>170;"
+ },
+ {
+  "instruction": "列出所有案件发生时间在2021年之后的案件的案件名称和案件地点。",
+  "output": "SELECT AJMC,AJDD FROM CASES WHERE AJSJ>'2021-01-01';"
+ },
+ {
+  "instruction": "给出所有身高超过180cm的年龄小于30岁的男性嫌疑人的姓名和身份证号。",
+  "output": "SELECT XYRXM,XYRSFZH FROM CASES WHERE XYRG>180 AND XYRNL<30 AND XYRXB='男';"
+ },
+ {
+  "instruction": "列出普陀区发生的所有性侵案件的案件名称和嫌疑人年龄。",
+  "output": "SELECT AJMC,XYRNL FROM CASES WHERE AJDD_Q='普陀区' AND AJLX='性侵案件';"
+ },
+ {
+  "instruction": "给出身高最低的嫌疑人的姓名和案件发生时间。",
+  "output": "SELECT XYRXM,AJSJ FROM CASES ORDER BY XYRSG ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件编号为'12345'的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH = '12345';"
+ },
+ {
+  "instruction": "查询案件描述中包含'抢劫'的所有案件地点",
+  "output": "SELECT AJDD FROM CASES WHERE AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询在上海市发生的所有性侵案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJDD_S = '上海市' AND AJLX = '性侵案件';"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年的所有案件类型和案件描述",
+  "output": "SELECT AJLX, AJMS FROM CASES WHERE YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询年龄最小的被害人的姓名和年龄",
+  "output": "SELECT BHRXM, BHRNL FROM CASES WHERE BHRNL = (SELECT MIN(BHRNL) FROM CASES);"
+ },
+ {
+  "instruction": "查询身高最高的嫌疑人的姓名和性别",
+  "output": "SELECT XYRXM, XYRXB FROM CASES WHERE XYRSG = (SELECT MAX(XYRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查询被害人身份证号为'420123456789012345'的案件类型和案件描述",
+  "output": "SELECT AJLX, AJMS FROM CASES WHERE BHRSFZH = '420123456789012345';"
+ },
+ {
+  "instruction": "查询嫌疑人外貌描述中包含'短发'的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE XYRWM LIKE '%短发%';"
+ },
+ {
+  "instruction": "查询案件地点为'黄浦区'且发生时间在2021年的所有案件名称和案件地点",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE AJDD_Q = '黄浦区' AND YEAR(AJSJ) = 2021;"
+ },
+ {
+  "instruction": "查询所有抢劫案件中被害人性别为'女'的案件编号和案件描述",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '抢劫案件' AND BHRXB = '女';"
+ },
+ {
+  "instruction": "查询发生在公园的性侵案件的数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND AJDD LIKE '%公园%'"
+ },
+ {
+  "instruction": "查询2020年发生的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE YEAR(AJSJ) = 2020"
+ },
+ {
+  "instruction": "查询嫌疑人性别为男性、年龄在20岁以下的抢劫案件的数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '抢劫案件' AND XYRXB = '男' AND XYRNL < 20"
+ },
+ {
+  "instruction": "查询案件描述中包含“暴力”的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJMS LIKE '%暴力%'"
+ },
+ {
+  "instruction": "查询发生在浦东新区的所有偷盗案件的案件编号、案件类型和案件地点。",
+  "output": "SELECT AJBH, AJLX, AJDD FROM CASES WHERE AJDD_Q = '浦东新区' AND AJLX = '偷盗案件'"
+ },
+ {
+  "instruction": "查询发生在2019年的所有案件的案件名称和案件地点。",
+  "output": "SELECT AJMC, AJDD FROM CASES WHERE YEAR(AJSJ) = 2019"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的性侵案件的案件编号和嫌疑人姓名。",
+  "output": "SELECT AJBH, XYRXM FROM CASES WHERE AJLX = '性侵案件' ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询被害人性别为女性、年龄在15岁以下、身高在150cm以上的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE BHRXB = '女' AND BHRNL < 15 AND BHRSG > 150"
+ },
+ {
+  "instruction": "查询嫌疑人身份证号为'123456789012345678'的案件的案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE XYRSFZH = '123456789012345678'"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件、发生在虹口区的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE AJLX = '偷盗案件' AND AJDD_Q = '虹口区'"
+ },
+ {
+  "instruction": "查询2020年发生在公园的性侵案件中，受害人是14周岁以下女性的，身高最高的嫌疑人的姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE AJLX='性侵案件' AND AJDD LIKE '%公园%' AND BHRNL <= 14 AND BHRXB = '女' ORDER BY XYRSG DESC LIMIT 1"
+ },
+ {
+  "instruction": "查询发生在上海市黄浦区并且案件类型为抢劫案件的所有案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE AJDD_S='上海市' AND AJDD_Q='黄浦区' AND AJLX='抢劫案件'"
+ },
+ {
+  "instruction": "查询发生在2021年的所有案件描述中包含“枪支”的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE AJMS LIKE '%枪支%' AND YEAR(AJSJ) = 2021"
+ },
+ {
+  "instruction": "查询所有嫌疑人身高超过180cm的案件的受害人姓名和案件地点",
+  "output": "SELECT BHRXM, AJDD FROM CASES WHERE XYRSG > 180"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高且外貌描述中包含“刺青”的性侵案件的案件编号和案件地点",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJLX='性侵案件' AND XYRSG = (SELECT MAX(XYRSG) FROM CASES WHERE AJLX='性侵案件' AND XYRWM LIKE '%刺青%')"
+ },
+ {
+  "instruction": "查询嫌疑人和被害人身高相差不超过10cm的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE ABS(XYRSG - BHRSG) <= 10"
+ },
+ {
+  "instruction": "查询案件发生在2020年之前的所有案件类型和案件描述",
+  "output": "SELECT AJLX, AJMS FROM CASES WHERE YEAR(AJSJ) < 2020"
+ },
+ {
+  "instruction": "查询嫌疑人年龄大于等于40岁且被害人性别为女的所有案件地点",
+  "output": "SELECT AJDD FROM CASES WHERE XYRNL >= 40 AND BHRXB = '女'"
+ },
+ {
+  "instruction": "查询案件地点所在的所有区县名称",
+  "output": "SELECT DISTINCT AJDD_Q FROM CASES"
+ },
+ {
+  "instruction": "查询案件发生时间为2020年1月1日以后的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJSJ >= '2020-01-01'"
+ },
+ {
+  "instruction": "查询案件编号为202001的案件名称。",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH = '202001';"
+ },
+ {
+  "instruction": "查询案件地点在上海市徐汇区的所有案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJDD_S = '上海市' AND AJDD_Q = '徐汇区';"
+ },
+ {
+  "instruction": "查询案件时间在2020年的所有性侵案件的案件名称和受害人姓名。",
+  "output": "SELECT AJMC, BHRXM FROM CASES WHERE AJLX = '性侵案件' AND YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询案件类型为抢劫案件，被害人性别为男性的案件的案件地点和案件描述。",
+  "output": "SELECT AJDD, AJMS FROM CASES WHERE AJLX = '抢劫案件' AND BHRXB = '男';"
+ },
+ {
+  "instruction": "查询案件时间在2020年1月1日至2020年12月31日之间，并且案件地点在上海市金山区的所有案件的案件编号、案件名称和案件描述。",
+  "output": "SELECT AJBH, AJMC, AJMS FROM CASES WHERE AJSJ BETWEEN '2020-01-01' AND '2020-12-31' AND AJDD_S = '上海市' AND AJDD_Q = '金山区';"
+ },
+ {
+  "instruction": "查询年龄最小的嫌疑人的姓名、年龄和嫌疑人性别。",
+  "output": "SELECT XYRXM, XYRNL, XYRXB FROM CASES ORDER BY XYRNL ASC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件描述中包含关键词“杀人”的所有案件的案件名称、案件地点和案件时间。",
+  "output": "SELECT AJMC, AJDD, AJSJ FROM CASES WHERE AJMS LIKE '%杀人%';"
+ },
+ {
+  "instruction": "查询嫌疑人身高在180cm以上、体重在60kg以下的所有案件的案件编号和案件描述。",
+  "output": "SELECT AJBH, AJMS FROM CASES WHERE XYRSG > 180 AND XYRTZ < 60;"
+ },
+ {
+  "instruction": "查询被害人年龄在12岁以下的所有案件的案件编号、案件名称和案件地点。",
+  "output": "SELECT AJBH, AJMC, AJDD FROM CASES WHERE BHRNL < 12;"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件，并且嫌疑人体重超过80kg的案件的案件描述和被害人姓名。",
+  "output": "SELECT AJMS, BHRXM FROM CASES WHERE AJLX = '偷盗案件' AND XYRTZ > 80;"
+ },
+ {
+  "instruction": "查询所有性侵案件中，案件名称为'2020年公园性侵案'的案件信息",
+  "output": "SELECT * FROM CASES WHERE AJLX='性侵案件' AND AJMC='2020年公园性侵案';"
+ },
+ {
+  "instruction": "查询2020年上海市发生的所有案件信息",
+  "output": "SELECT * FROM CASES WHERE AJDD_S='上海市' AND AJSJ LIKE '2020%';"
+ },
+ {
+  "instruction": "查询所有身高超过170cm的嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE XYRSG > 170;"
+ },
+ {
+  "instruction": "查询所有案件中，嫌疑人年龄小于18岁的案件编号和案件名称",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE XYRNL < 18;"
+ },
+ {
+  "instruction": "查询性侵案件中，受害人性别为女性的案件描述",
+  "output": "SELECT AJMS FROM CASES WHERE AJLX='性侵案件' AND BHRXB='女';"
+ },
+ {
+  "instruction": "查询所有案件中，嫌疑人体重在60kg到80kg之间的案件地点",
+  "output": "SELECT AJDD FROM CASES WHERE XYRTZ BETWEEN 60 AND 80;"
+ },
+ {
+  "instruction": "查询所有案件中，案件描述包含'夜间'且发生在普陀区的案件类型",
+  "output": "SELECT AJLX FROM CASES WHERE AJMS LIKE '%夜间%' AND AJDD_Q='普陀区';"
+ },
+ {
+  "instruction": "查询所有案件中，被害人年龄大于嫌疑人年龄的案件编号和案件时间",
+  "output": "SELECT AJBH, AJSJ FROM CASES WHERE BHRNL > XYRNL;"
+ },
+ {
+  "instruction": "查询所有案件中，案件地点包含'花园'的案件描述和案件地点",
+  "output": "SELECT AJMS, AJDD FROM CASES WHERE AJDD LIKE '%花园%';"
+ },
+ {
+  "instruction": "查询抢劫案件中，受害人体重最重的嫌疑人身份证号",
+  "output": "SELECT XYRSFZH FROM CASES WHERE AJLX='抢劫案件' ORDER BY BHRTZ DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询2020年发生的性侵案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX = '性侵案件' AND YEAR(AJSJ) = 2020;"
+ },
+ {
+  "instruction": "查询发生在公园的所有案件名称和案件描述。",
+  "output": "SELECT AJMC, AJMS FROM CASES WHERE AJDD LIKE '%公园%';"
+ },
+ {
+  "instruction": "查询发生在黄浦区的所有性侵案件的受害人姓名和嫌疑人姓名。",
+  "output": "SELECT BHRXM, XYRXM FROM CASES WHERE AJLX = '性侵案件' AND AJDD_Q = '黄浦区';"
+ },
+ {
+  "instruction": "查询受害人身高最高的案件的案件名称和受害人身高。",
+  "output": "SELECT AJMC, BHRSG FROM CASES WHERE BHRSG = (SELECT MAX(BHRSG) FROM CASES);"
+ },
+ {
+  "instruction": "查询案件编号为'20200101'的案件的所有信息。",
+  "output": "SELECT * FROM CASES WHERE AJBH = '20200101';"
+ },
+ {
+  "instruction": "查询偷盗案件中受害人性别为女性且年龄大于50岁的案件的案件名称和案件时间。",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE AJLX = '偷盗案件' AND BHRXB = '女' AND BHRNL > 50;"
+ },
+ {
+  "instruction": "查询所有案件的不重复的案件类型。",
+  "output": "SELECT DISTINCT AJLX FROM CASES;"
+ },
+ {
+  "instruction": "查询男性嫌疑人的平均身高。",
+  "output": "SELECT AVG(XYRSG) FROM CASES WHERE XYRXB = '男';"
+ },
+ {
+  "instruction": "查询案件地点为宝山区的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJDD_Q = '宝山区';"
+ },
+ {
+  "instruction": "查询案件发生时间在2020年4月份的案件数量。",
+  "output": "SELECT COUNT(*) FROM CASES WHERE YEAR(AJSJ) = 2020 AND MONTH(AJSJ) = 4;"
+ },
+ {
+  "instruction": "查询案件编号为202001的案件名称",
+  "output": "SELECT AJMC FROM CASES WHERE AJBH='202001' LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件类型为偷盗案件的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='偷盗案件';"
+ },
+ {
+  "instruction": "查询发生在上海市的所有案件信息",
+  "output": "SELECT * FROM CASES WHERE AJDD_S='上海市';"
+ },
+ {
+  "instruction": "查询2020年发生的性侵案件中，受害人年龄小于14岁的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE AJLX='性侵案件' AND YEAR(AJSJ)=2020 AND BHRNL<14;"
+ },
+ {
+  "instruction": "查询发生在徐汇区的案件中，被害人身高最高的嫌疑人姓名",
+  "output": "SELECT XYRXM FROM CASES WHERE AJDD_Q='徐汇区' ORDER BY BHRSG DESC LIMIT 1;"
+ },
+ {
+  "instruction": "查询案件描述中包含“抢劫”的所有案件信息",
+  "output": "SELECT * FROM CASES WHERE AJMS LIKE '%抢劫%';"
+ },
+ {
+  "instruction": "查询嫌疑人性别为女性且体重大于70kg的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE XYRXB='女' AND XYRTZ>70;"
+ },
+ {
+  "instruction": "查询被害人身高为170cm的案件数量",
+  "output": "SELECT COUNT(*) FROM CASES WHERE BHRSG=170;"
+ },
+ {
+  "instruction": "查询案件发生在金山区或崇明区的嫌疑人外貌描述",
+  "output": "SELECT XYRWM FROM CASES WHERE AJDD_Q IN ('金山区', '崇明区');"
+ },
+ {
+  "instruction": "查询嫌疑人身份证号为'1234567890'的案件信息",
+  "output": "SELECT * FROM CASES WHERE XYRSFZH='1234567890';"
+ },
+ {
+  "instruction": "查找2020年在上海市发生的抢劫案件的案件编号和案件名称。",
+  "output": "SELECT AJBH, AJMC FROM CASES WHERE AJLX = '抢劫案件' AND AJDD_S = '上海市' AND AJSJ LIKE '2020%'"
+ },
+ {
+  "instruction": "查询案件地点是静安区并且案件类型是性侵案件的案件描述。",
+  "output": "SELECT AJMS FROM CASES WHERE AJDD_Q = '静安区' AND AJLX = '性侵案件'"
+ },
+ {
+  "instruction": "查找被害人年龄小于18岁的案件的嫌疑人姓名和年龄。",
+  "output": "SELECT XYRXM, XYRNL FROM CASES WHERE BHRNL < 18"
+ },
+ {
+  "instruction": "查询发生在浦东新区并且嫌疑人身高超过180cm的偷盗案件的案件编号和案件类型。",
+  "output": "SELECT AJBH, AJLX FROM CASES WHERE AJDD_Q = '浦东新区' AND XYRSG > 180 AND AJLX = '偷盗案件'"
+ },
+ {
+  "instruction": "查找案件时间是2021年4月25日，并且嫌疑人性别为女性的案件的被害人姓名和年龄。",
+  "output": "SELECT BHRXM, BHRNL FROM CASES WHERE AJSJ = '2021-04-25' AND XYRXB = '女'"
+ },
+ {
+  "instruction": "查询案件描述中包含关键词“暴力”的抢劫案件的案件编号和案件地点。",
+  "output": "SELECT AJBH, AJDD FROM CASES WHERE AJMS LIKE '%暴力%' AND AJLX = '抢劫案件'"
+ },
+ {
+  "instruction": "查找案件地点是嘉定区或者青浦区的偷盗案件的嫌疑人姓名和身高。",
+  "output": "SELECT XYRXM, XYRSG FROM CASES WHERE AJDD_Q IN ('嘉定区', '青浦区') AND AJLX = '偷盗案件'"
+ },
+ {
+  "instruction": "查询案件类型为性侵案件并且嫌疑人体重大于60kg的案件的案件地点-城市和案件时间。",
+  "output": "SELECT AJDD_S, AJSJ FROM CASES WHERE AJLX = '性侵案件' AND XYRTZ > 60"
+ },
+ {
+  "instruction": "查找案件名称包含关键词“持刀”的抢劫案件的案件描述和案件时间。",
+  "output": "SELECT AJMS, AJSJ FROM CASES WHERE AJMC LIKE '%持刀%' AND AJLX = '抢劫案件'"
+ },
+ {
+  "instruction": "查询嫌疑人身高最高的偷盗案件的案件名称和案件时间。",
+  "output": "SELECT AJMC, AJSJ FROM CASES WHERE AJLX = '偷盗案件' ORDER BY XYRSG DESC LIMIT 1"
+ }
+]
