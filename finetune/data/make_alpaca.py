@@ -4,9 +4,9 @@ import json
 if __name__ == '__main__':
     with open('./finetune/data/finetune_data.json', 'r', encoding='utf-8') as f:
         origin = json.loads(f.read())
-    with open('../../prompt.md', 'r', encoding='utf-8') as f:
+    with open('./prompt.md', 'r', encoding='utf-8') as f:
         template = f.read()
-    with open('../../metadata.sql', 'r', encoding='utf-8') as f:
+    with open('./metadata.sql', 'r', encoding='utf-8') as f:
         metadata = f.read()
     alpaca_t2sql = []
     for i in origin:
