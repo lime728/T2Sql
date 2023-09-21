@@ -1,4 +1,4 @@
-import json
+import json, os
 
 
 if __name__ == '__main__':
@@ -18,5 +18,6 @@ if __name__ == '__main__':
             "input": "",
             "output": i["output"]
         })
-    with open('./alpaca_t2sql.json', 'w', encoding='utf-8') as f:
+    os.makedirs('./finetune/data/alpaca_lora', exist_ok=True)
+    with open('./finetune/data/alpaca_lora/alpaca_t2sql.json', 'w', encoding='utf-8') as f:
         f.write(json.dumps(alpaca_t2sql, ensure_ascii=False, indent=1))
