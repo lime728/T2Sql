@@ -6,3 +6,5 @@ pydantic
 uvicorn
 json
 requests
+fire
+datasets
