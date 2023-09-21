@@ -36,6 +36,8 @@ You can start fine-tune by running [finetune.py](./finetune/finetune.py).
 ```bash
 python ./finetune/finetune.py --data_path <your_data_path> --base_model <your_model_path> --output_dir <your_output_dir>
 ```
+Please note that `lora_target_modules` should be `None` so that peft could figure out the correct target_modules based on the model_type.
+
 Also you can use [merge_llama_with_lora.py](./finetune/merge_llama_with_lora.py) to get merged weights.
 ```bash
 python ./finetune/merge_llama_wth_lora.py --base_model <your_model_path> --lora_model <your_lora_model_path> --output_type huggingface --output_dir <your_output_dir>
@@ -52,7 +54,7 @@ To wash the result, we use [make_alpaca.py](./finetune/data/make_alpaca.py) to a
 ```bash
 python ./finetune/data/make_alpaca.py
 ```
-And finally [alpaca_t2sql.json](./finetune/data/alpaca_t2sql.json) is been built.
+And finally [alpaca_t2sql.json](./finetune/data/alpaca_lora/alpaca_t2sql.json) is been built.
 
 ## Tips
 We recommend using `sqlcoder` as LLM to transfer Text to Sql language.
