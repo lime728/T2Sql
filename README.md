@@ -6,6 +6,10 @@ A simple sever to transfer Text to Sql language by LLM.
 ```bash
 pip install -r requirements.txt
 ```
+The model can be downloaded by this:
+```bash
+git clone https://huggingface.co/defog/sqlcoder
+```
 
 ### Set-up Sever
 ```bash
