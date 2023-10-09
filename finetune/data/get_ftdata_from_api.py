@@ -70,7 +70,7 @@ def main():
     headers = {
         'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer sk-BOATTlUU478801532161T3BLbkFJA37E314ccd1949efa37d'
+        'Authorization': 'Bearer <your_api_key>'
     }
     sql_data = list()
     with tqdm(range(50), desc='Crawling') as tq:
