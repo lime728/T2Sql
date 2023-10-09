@@ -17,5 +17,6 @@ if __name__ == '__main__':
     parser.add_argument('--port', '-P', help='port of this service', default=6006)
     args = parser.parse_args()
     url = 'http://' + str(args.host) + ':' + str(args.port) + '/sqlcoder'
+    print('输入：', data['question'])
     r = requests.post(url='http://127.0.0.1:6006/sqlcoder', headers=header, data=json.dumps(data))
-    print(r.text)
+    print('输出：', json.loads(r.text)["output"])
