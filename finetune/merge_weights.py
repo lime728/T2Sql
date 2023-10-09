@@ -33,33 +33,10 @@ def export_hf(BASE_MODEL: str = '',
 
     # 合并参数
 
-    # TODO:不理解这步，这步的意义是啥呢？
-    # for layer in lora_model.base_model.model.model.layers:
-    #     layer.self_attn.q_proj.merge_weights = True
-    #     layer.self_attn.v_proj.merge_weights = True
-    lora_model.train(False)
-
-    lora_model_sd = lora_model.state_dict()  # 获取字典格式的参数
-    deloreanized_sd = {
-        k.replace("base_model.model.", ""): v
-        for k, v in lora_model_sd.items()
-        if "lora" not in k
-    }
-
-    # TODO:不理解这步，这是直接就合并了？？
-
-    if 'llama' in BASE_MODEL.lower():
-        LlamaForCausalLM.save_pretrained(
-            base_model, os.path.join(save_dir, "hf_ckpt"), state_dict=deloreanized_sd, max_shard_size=max_shard_size
-        )
-    elif 'bloom' in BASE_MODEL.lower():
-        BloomForCausalLM.save_pretrained(
-            base_model, os.path.join(save_dir, "hf_ckpt"), state_dict=deloreanized_sd, max_shard_size=max_shard_size
-        )
-    else:
-        AutoModelForCausalLM.save_pretrained(
-            base_model, os.path.join(save_dir, "hf_ckpt"), state_dict=deloreanized_sd, max_shard_size=max_shard_size
-        )
+    model = lora_model.merge_and_unload()
+ 
+    print(f"Saving the target model to {output_path}")
+    model.save_pretrained(os.path.join(save_dir, "hf_ckpt"))
     tokenizer.save_pretrained(os.path.join(save_dir, "hf_ckpt"))
     print('合并完成')
 
