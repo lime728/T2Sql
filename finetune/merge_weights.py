@@ -32,10 +32,8 @@ def export_hf(BASE_MODEL: str = '',
         tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, cache_dir=cache_dir)
 
     # 合并参数
-
     model = lora_model.merge_and_unload()
  
-    print(f"Saving the target model to {output_path}")
     model.save_pretrained(os.path.join(save_dir, "hf_ckpt"))
     tokenizer.save_pretrained(os.path.join(save_dir, "hf_ckpt"))
     print('合并完成')
