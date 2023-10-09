@@ -40,7 +40,7 @@ Please note that `lora_target_modules` should be `None` so that peft could figur
 
 Also you can use [merge_weights.py](./finetune/merge_weights.py) to get merged weights.
 ```bash
-python ./finetune/merge_llama_with_lora.py --BASE_MODEL <your_model_path> --lora_weights <your_lora_model_path> --save_dir <your_output_dir>
+python ./finetune/merge_weights.py --BASE_MODEL <your_model_path> --lora_weights <your_lora_model_path> --save_dir <your_output_dir>
 ```
 We provide a demo alpaca-lora data file `alpaca_t2sql.json` to help you finetuning the LLM.
 
